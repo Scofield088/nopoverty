@@ -13,12 +13,19 @@
     <div class="row justify-content-center">
         <!-- Emergency Aid Locator - Full Width -->
         <div class="col-md-12 mb-4">
-            <div class="custom-card text-center">
-                <h2 class="heading-emergency">Find Emergency Aid Near You</h2>
+            <div class="custom-card text-center position-relative">
+                <h2 classs="heading-emergency">Find Emergency Aid Near You</h2>
                 <p>Locate nearby shelters, food banks, and NGOs offering assistance.</p>
-                <a href="https://www.google.com/maps/search/emergency+aid+near+me" target="_blank">
-                    <div id="map" class="map-container"></div>
-                </a>
+        
+                <!-- Map Image with Button -->
+                <div class="map-container position-relative">
+                    <img src="/static/map.png" alt="Map" class="map-image">
+                    
+                    <!-- Centered Button -->
+                    <a href="https://www.google.com/maps/search/emergency+aid+near+me" target="_blank" class="find-btn">
+                        Find Here
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -27,7 +34,7 @@
             <div class="custom-card text-center">
                 <h2 class="heading-relief">Disaster Relief Fund</h2>
                 <p>Support victims by contributing to relief funds.</p>
-                <a href="{url relief-fund.html}" class="btn btn-success btn-lg mt-3">Contribute Now</a>
+                <a href="relief-fund.html" class="btn btn-success btn-lg mt-3">Contribute Now</a>
             </div>
         </div>
 
@@ -36,7 +43,7 @@
             <div class="custom-card text-center">
                 <h2 class="heading-donate">Donate Food & Essentials</h2>
                 <p>Help those in need by donating clothes, food, and supplies.</p>
-                <a href="{url relief-fund.html}" class="btn btn-primary btn-lg mt-3">Donate Now</a>
+                <a href="donate-essentials.html" class="btn btn-primary btn-lg mt-3">Donate Now</a>
             </div>
         </div>
         <div class="col-md-6 mb-4">
@@ -53,7 +60,7 @@
             <div class="custom-card text-center">
                 <h2 class="heading-action">Make a Difference Today</h2>
                 <p>Your contribution can save lives. Donate, volunteer, or help fund relief efforts.</p>
-                <a href="{url relief-fund.html}" class="btn btn-warning btn-lg mt-3">Donate Now</a>
+                <a href="donate.html" class="btn btn-warning btn-lg mt-3">Donate Now</a>
                 <a href="volunteer.html" class="btn btn-danger btn-lg mt-3">Volunteer</a>
             </div>
         </div>
@@ -62,6 +69,38 @@
 
 <style>
 /* General Styles */
+.map-container {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .map-image {
+        width: 100%;
+        height: 400px;
+        filter: blur(1.2px); /* Blurry effect */
+        border-radius: 8px;
+    }
+
+    .find-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #007bff;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s ease;
+    }
+
+    .find-btn:hover {
+        background-color: #0056b3;
+    }
 body {
     font-family: 'Arial', sans-serif;
     background-color: #121212;

@@ -31,5 +31,5 @@ urlpatterns = [
    path('accounts/', include('django.contrib.auth.urls')),
    path('volunteer/', include('volunteer.urls')),
    path('donate/', include('donate.urls')),
-
+   path("aisuggest/", include("aisuggest.urls")),
 ] + static(settings.MEDIA_URL , document_root=settings.MEDIA_ROOT)
