@@ -1,6 +1,5 @@
 # No Poverty Project
 
-![No Poverty](https://www.un.org/sustainabledevelopment/wp-content/uploads/2019/09/E_SDG_Icons-01.jpg)
 
 ## 🌍 About the Project
 The **No Poverty** project is a web-based application designed to combat poverty by leveraging technology to connect people in need with resources, volunteers, donations, and microfinance opportunities. The platform provides tools to facilitate aid distribution, encourage volunteer participation, and offer financial assistance.
