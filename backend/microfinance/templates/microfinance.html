@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+    color: #007bff;
+}
+
+p {
+    font-size: 1.1rem;
+}
+
+/* Hero Section */
+section.text-center {
+    background: linear-gradient(to right, #007bff, #00c6ff);
+    color: white;
+    padding: 80px 20px;
+    border-radius: 10px;
+}
+
+section.text-center h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    background-color: #ff5722;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #e64a19;
+}
+
+/* Sections */
+.container {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+/* How It Works */
+.row.text-center div {
+    background: #007bff;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.row.text-center div h3 {
+    font-size: 1.5rem;
+    color: white;
+}
+
+/* Forms */
+form {
+    background: #f1f1f1;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+form label {
+    font-weight: 500;
+}
+
+form .form-control {
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+form .btn {
+    width: 100%;
+    font-size: 1.1rem;
+}
+
+/* Success Stories */
+.container.mt-5 p {
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .row.text-center div {
+        margin-bottom: 15px;
+    }
+}
+
+    </style>
+    <title>Microfinance & Loans</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<!-- Hero Section -->
+<section class="text-center p-5 bg-light">
+    <h1>Unlock Your Potential with Microfinance</h1>
+    <p>Empowering dreams, one small business at a time.</p>
+    <a href="#apply-section" class="btn btn-primary">Apply for a Microloan</a>
+</section>
+
+<!-- What is Microfinance? -->
+
+<!-- How It Works -->
+<section class="container mt-5">
+    <h2>How It Works</h2>
+    <div class="row text-center">
+        <div class="col-md-3"><h3>1. Register</h3><p>Sign up on NoPoverty.</p></div>
+        <div class="col-md-3"><h3>2. Submit Idea</h3><p>Provide your business plan.</p></div>
+        <div class="col-md-3"><h3>3. Get Matched</h3><p>We connect you with lenders.</p></div>
+        <div class="col-md-3"><h3>4. Receive Loan</h3><p>Start and grow your business!</p></div>
+    </div>
+</section>
+
+<!-- Eligibility Checker -->
+<section class="container mt-5">
+    <h2>Check Your Eligibility</h2>
+    <form id="eligibility-form">
+        <label>Age: <input type="number" name="age" class="form-control" required></label>
+        <label>Monthly Income: <input type="number" name="income" class="form-control" required></label>
+        <button type="submit" class="btn btn-primary mt-2">Check Eligibility</button>
+    </form>
+    <p id="eligibility-result"></p>
+</section>
+
+<!-- Apply Now -->
+<section id="apply-section" class="container mt-5">
+    <h2>Apply for a Microloan</h2>
+    <form id="loan-application-form">
+        <input type="text" name="name" class="form-control mb-2" placeholder="Full Name" required>
+        <textarea name="business_idea" class="form-control mb-2" placeholder="Describe Your Business Idea" required></textarea>
+        <input type="number" name="loan_amount" class="form-control mb-2" placeholder="Loan Amount (USD)" required>
+        <input type="text" name="contact_details" class="form-control mb-2" placeholder="Contact Details" required>
+        <button type="submit" class="btn btn-success">Submit Application</button>
+    </form>
+    <p id="loan-result"></p>
+</section>
+
+<!-- JavaScript for AJAX Requests -->
+<script>
+document.getElementById("eligibility-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+    let formData = new FormData(this);
+    fetch("{% url 'check_eligibility' %}", {
+        method: "POST",
+        body: formData,
+        headers: { "X-CSRFToken": "{{ csrf_token }}" }
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("eligibility-result").innerText = data.eligible ? "You are eligible!" : "Sorry, you do not meet the criteria.";
+    });
+});
+
+document.getElementById("loan-application-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+    let formData = new FormData(this);
+    fetch("{% url 'apply_for_loan' %}", {
+        method: "POST",
+        body: formData,
+        headers: { "X-CSRFToken": "{{ csrf_token }}" }
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("loan-result").innerText = data.success || data.error;
+    });
+});
+</script>
+
+</body>
+</html>

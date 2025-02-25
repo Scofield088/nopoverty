@@ -116,13 +116,17 @@
                     <a class="nav-link" href="{% url 'home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Poverty Analysis</a>
+                    <a class="nav-link" href="{% url 'ai_suggestions' %}">Census-based Analysis</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'map_view' %}">Satellite-based Analysis</a>
+                </li>
+                
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'aidloc' %}">Aid Locator</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Job Opportunities</a>
+                    <a class="nav-link" href="{% url 'job_opportunities' %}">Job Opportunities</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'empowerment' %}">Empowerment & Social Protection</a>
@@ -130,9 +134,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'resilience' %}">Resilience & Crisis Support</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="{% url 'policy' %}">Policy & Community Engagement</a>
-                </li>
+                </li> -->
             </ul>
         </nav>
 
@@ -142,6 +146,8 @@
             {% endblock %}
         </div>
     </div>
-
+    <script>
+        (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="hRfVBM61nDAJUwtfRu8te";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+    </script>
 </body>
 </html>

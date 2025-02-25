@@ -87,6 +87,7 @@
             <input type="text" name="name" id="name" placeholder="Your Name" required>
             <input type="email" name="email" id="email" placeholder="Your Email" required>
             <input type="text" name="phone" id="phone" placeholder="Your Phone" required>
+            <input type="text" name="ngo" id="ngo" placeholder="Name of NGO" required>
             <textarea name="message" id="message" placeholder="Your Message"></textarea>
             <button type="submit">Submit</button>
         </form>
@@ -95,9 +96,29 @@
     <script>
         document.getElementById("volunteerForm").onsubmit = async function(event) {
             event.preventDefault();
-
+    
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            let ngo = document.getElementById("ngo").value.trim();
+            let message = document.getElementById("message").value.trim();
+    
+            // Email validation
+            let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+    
+            // Phone number validation (10 digits)
+            let phonePattern = /^\d{10}$/;
+            if (!phonePattern.test(phone)) {
+                alert("Phone number must be exactly 10 digits.");
+                return;
+            }
+    
             let formData = new FormData(this);
-
+    
             let response = await fetch("{% url 'volunteer' %}", {
                 method: "POST",
                 body: formData,
@@ -105,7 +126,7 @@
                     "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value
                 }
             });
-
+    
             try {
                 let result = await response.json();
                 if (response.ok) {
@@ -119,6 +140,7 @@
             }
         };
     </script>
+    
 
 </body>
 </html>

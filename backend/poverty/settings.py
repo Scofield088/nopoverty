@@ -19,6 +19,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 GEMINI_API_KEY = env("GEMINI_API_KEY")
+
+# TWILIO_ACCOUNT_SID = "ACc93c6f9855fa713705ae69a5b3a3ddc5"
+# TWILIO_AUTH_TOKEN = "4dd4375e8b873ef3cc664ff8e0cbac88"
+# TWILIO_PHONE_NUMBER = "9347788474"  # Your Twilio phone number
+
+
+RAZORPAY_KEY_ID = "rzp_test_yNu8k93iAlAW4s"
+RAZORPAY_KEY_SECRET = "mt23yGLAERopSNMsEcJltfDk"
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -46,6 +55,11 @@ INSTALLED_APPS = [
     'volunteer',
     'donate',
     'aisuggest',
+    'map',
+    'pay',
+    'analysis',
+    'microfinance',
+    'food',
  ]
 
 MIDDLEWARE = [
