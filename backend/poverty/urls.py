@@ -34,7 +34,6 @@ urlpatterns = [
    path("aisuggest/", include("aisuggest.urls")),
    path("map/", include("map.urls")),
    path("pay/", include("pay.urls")),
-   path("analysis/", include("analysis.urls")),
    path("microfinance/", include("microfinance.urls")),
    path("food/", include("food.urls")),
 ] + static(settings.MEDIA_URL , document_root=settings.MEDIA_ROOT)
